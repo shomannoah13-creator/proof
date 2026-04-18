@@ -377,6 +377,7 @@ footer { background: var(--ink); padding: 2rem 2.5rem; border-top: 1px solid rgb
 <footer><div class="foot"><span class="foot-logo" onclick="goHome()">Proof<span>.</span></span><span class="foot-copy">© 2026 N. Shoman</span></div></footer>
 </div>
 <script>
+const W3F_KEY='66545b9f-1cf0-475c-8b97-520a8c4719ef';
 function goHome(){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-home').classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
 function showVerify(){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-verify').classList.add('active');window.scrollTo({top:0,behavior:'smooth'});resetVerify();}
 function st(sel){setTimeout(()=>{const el=document.querySelector(sel);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},60);}
@@ -399,11 +400,9 @@ function sendContact(){
   const email=document.getElementById('c-email').value.trim();
   const msg=document.getElementById('c-msg').value.trim();
   if(!email||!msg){alert('Please enter your email and a message.');return;}
-  const subject=encodeURIComponent('Proof Contact');
-  const body=encodeURIComponent('From: '+fname+' '+lname+'\nEmail: '+email+'\n\nMessage:\n'+msg);
-  window.location.href='mailto:shomannoah13@gmail.com?subject='+subject+'&body='+body;
-  document.getElementById('contact-form').style.display='none';
-  document.getElementById('contact-success').style.display='block';
+  fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({access_key:W3F_KEY,subject:'Proof — Contact Form',from_name:fname+' '+lname,email:email,message:msg})})
+  .then(()=>{document.getElementById('contact-form').style.display='none';document.getElementById('contact-success').style.display='block';})
+  .catch(()=>alert('Something went wrong. Please try again.'));
 }
 let currentVerification={claim:'',source:'',verdict:'',breakdown:''};
 function requestHumanReview(){
@@ -416,11 +415,9 @@ function dismissHumanReview(){
 function submitHumanReview(){
   const email=document.getElementById('hv-email').value.trim();
   if(!email){alert('Please enter your email.');return;}
-  const subject=encodeURIComponent('Proof — Human Review Request');
-  const body=encodeURIComponent('HUMAN REVIEW REQUEST\n\nUser Email: '+email+'\n\nCLAIM:\n'+currentVerification.claim+'\n\nSOURCE:\n'+currentVerification.source+'\n\nAI VERDICT: '+currentVerification.verdict+'\n\nAI BREAKDOWN:\n'+currentVerification.breakdown);
-  window.location.href='mailto:shomannoah13@gmail.com?subject='+subject+'&body='+body;
-  document.getElementById('hv-email-form').style.display='none';
-  document.getElementById('hv-confirmed').style.display='block';
+  fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({access_key:W3F_KEY,subject:'Proof — Human Review Request',email:email,message:'CLAIM:\n'+currentVerification.claim+'\n\nSOURCE:\n'+currentVerification.source+'\n\nAI VERDICT: '+currentVerification.verdict+'\n\nBREAKDOWN:\n'+currentVerification.breakdown})})
+  .then(()=>{document.getElementById('hv-email-form').style.display='none';document.getElementById('hv-confirmed').style.display='block';})
+  .catch(()=>alert('Something went wrong. Please try again.'));
 }
 function resetHumanReview(){
   const block=document.getElementById('hv-block');
