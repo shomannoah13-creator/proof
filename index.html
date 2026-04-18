@@ -108,49 +108,6 @@ footer { background: var(--ink); padding: 2rem 2.5rem; border-top: 1px solid rgb
 .foot-logo { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; color: var(--paper); cursor: pointer; }
 .foot-logo span { color: var(--accent); }
 .foot-copy { font-size: 0.78rem; color: rgba(245,243,238,0.32); }
-.verify-wrap { max-width: 680px; margin: 0 auto; padding: 6.5rem 2rem 5rem; }
-.verify-wrap h1 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 2.7rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 0.75rem; }
-.verify-wrap h1 em { font-style: italic; color: var(--accent); }
-.verify-sub { font-size: 0.95rem; color: var(--ink-muted); margin-bottom: 0.5rem; line-height: 1.75; }
-.verify-instruction { font-size: 0.85rem; color: var(--ink-muted); background: var(--paper-warm); border: 1px solid var(--paper-dark); border-radius: 0.65rem; padding: 0.85rem 1rem; margin-bottom: 1.75rem; line-height: 1.7; }
-.v-card { background: var(--white); border: 1px solid var(--paper-dark); border-radius: 1.25rem; padding: 2rem; }
-.v-submit-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-top: 0.25rem; }
-.v-trust { font-size: 0.76rem; color: var(--ink-faint); }
-.v-loading { display: none; text-align: center; padding: 3rem 1rem; }
-.v-loading.show { display: block; }
-.v-spinner { width: 36px; height: 36px; border: 2px solid var(--paper-dark); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; margin: 0 auto 1.25rem; }
-@keyframes spin { to { transform: rotate(360deg); } }
-.v-loading-text { font-size: 0.9rem; color: var(--ink-muted); }
-.v-result { display: none; margin-top: 2rem; }
-.v-result.show { display: block; }
-.verdict-banner { border-radius: 0.875rem; padding: 1.5rem 1.75rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1.25rem; }
-.verdict-banner.supported { background: #edf7f0; border: 1px solid #b8dfc5; }
-.verdict-banner.not-supported { background: var(--red-bg); border: 1px solid rgba(192,57,43,0.22); }
-.verdict-banner.partially { background: #fdf6e3; border: 1px solid #e8d48b; }
-.verdict-banner.overstated { background: #fff4ec; border: 1px solid #f5c89a; }
-.verdict-icon { font-size: 1.75rem; flex-shrink: 0; line-height: 1; }
-.verdict-label { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; line-height: 1.1; }
-.verdict-banner.supported .verdict-label { color: #1a6b3a; }
-.verdict-banner.not-supported .verdict-label { color: var(--red); }
-.verdict-banner.partially .verdict-label { color: #7a5c00; }
-.verdict-banner.overstated .verdict-label { color: #a04a00; }
-.verdict-short { font-size: 0.9rem; margin-top: 0.3rem; line-height: 1.6; }
-.verdict-banner.supported .verdict-short { color: #2d7a4a; }
-.verdict-banner.not-supported .verdict-short { color: #8b2a1f; }
-.verdict-banner.partially .verdict-short { color: #7a5c00; }
-.verdict-banner.overstated .verdict-short { color: #803a00; }
-.breakdown-card { background: var(--white); border: 1px solid var(--paper-dark); border-radius: 1rem; overflow: hidden; }
-.breakdown-header { background: var(--paper); padding: 0.85rem 1.5rem; border-bottom: 1px solid var(--paper-dark); display: flex; align-items: center; gap: 0.5rem; }
-.breakdown-dots { display: flex; gap: 0.4rem; }
-.breakdown-title { font-size: 0.72rem; color: var(--ink-faint); font-family: monospace; margin-left: 0.35rem; }
-.breakdown-body { display: flex; flex-direction: column; }
-.breakdown-row { padding: 1.4rem 1.5rem; border-bottom: 1px solid var(--paper-dark); }
-.breakdown-row:last-child { border-bottom: none; }
-.br-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.5rem; }
-.br-text { font-size: 0.9rem; color: var(--ink-muted); line-height: 1.75; }
-.br-text strong { color: var(--ink); font-weight: 500; }
-.v-again-btn { margin-top: 1.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
-.v-disclaimer { margin-top: 1rem; font-size: 0.78rem; color: var(--ink-faint); line-height: 1.6; }
 .fi { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
 .fi.in { opacity: 1; transform: translateY(0); }
 @media (max-width: 720px) {
@@ -290,6 +247,74 @@ footer { background: var(--ink); padding: 2rem 2.5rem; border-top: 1px solid rgb
 <footer><div class="foot"><span class="foot-logo" onclick="goHome()">Proof<span>.</span></span><span class="foot-copy">© 2026 N. Shoman · All submissions are confidential.</span></div></footer>
 </div>
 <div id="page-verify" class="page">
+<style>
+.verify-wrap { max-width: 680px; margin: 0 auto; padding: 6.5rem 2rem 5rem; }
+.verify-wrap h1 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 2.7rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 0.75rem; }
+.verify-wrap h1 em { font-style: italic; color: var(--accent); }
+.verify-sub { font-size: 0.95rem; color: var(--ink-muted); margin-bottom: 0.5rem; line-height: 1.75; }
+.verify-instruction { font-size: 0.85rem; color: var(--ink-muted); background: var(--paper-warm); border: 1px solid var(--paper-dark); border-radius: 0.65rem; padding: 0.85rem 1rem; margin-bottom: 1.75rem; line-height: 1.7; }
+.v-card { background: var(--white); border: 1px solid var(--paper-dark); border-radius: 1.25rem; padding: 2rem; }
+.v-submit-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-top: 0.25rem; }
+.v-trust { font-size: 0.76rem; color: var(--ink-faint); }
+.v-loading { display: none; text-align: center; padding: 3rem 1rem; }
+.v-loading.show { display: block; }
+.v-spinner { width: 36px; height: 36px; border: 2px solid var(--paper-dark); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; margin: 0 auto 1.25rem; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.v-loading-text { font-size: 0.9rem; color: var(--ink-muted); }
+.v-result { display: none; margin-top: 2rem; }
+.v-result.show { display: block; }
+.verdict-banner { border-radius: 0.875rem; padding: 1.5rem 1.75rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1.25rem; }
+.verdict-banner.supported { background: #edf7f0; border: 1px solid #b8dfc5; }
+.verdict-banner.not-supported { background: var(--red-bg); border: 1px solid rgba(192,57,43,0.22); }
+.verdict-banner.partially { background: #fdf6e3; border: 1px solid #e8d48b; }
+.verdict-banner.overstated { background: #fff4ec; border: 1px solid #f5c89a; }
+.verdict-icon { font-size: 1.75rem; flex-shrink: 0; line-height: 1; }
+.verdict-label { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; line-height: 1.1; }
+.verdict-banner.supported .verdict-label { color: #1a6b3a; }
+.verdict-banner.not-supported .verdict-label { color: var(--red); }
+.verdict-banner.partially .verdict-label { color: #7a5c00; }
+.verdict-banner.overstated .verdict-label { color: #a04a00; }
+.verdict-short { font-size: 0.9rem; margin-top: 0.3rem; line-height: 1.6; }
+.verdict-banner.supported .verdict-short { color: #2d7a4a; }
+.verdict-banner.not-supported .verdict-short { color: #8b2a1f; }
+.verdict-banner.partially .verdict-short { color: #7a5c00; }
+.verdict-banner.overstated .verdict-short { color: #803a00; }
+.breakdown-card { background: var(--white); border: 1px solid var(--paper-dark); border-radius: 1rem; overflow: hidden; }
+.breakdown-header { background: var(--paper); padding: 0.85rem 1.5rem; border-bottom: 1px solid var(--paper-dark); display: flex; align-items: center; gap: 0.5rem; }
+.breakdown-dots { display: flex; gap: 0.4rem; }
+.breakdown-title { font-size: 0.72rem; color: var(--ink-faint); font-family: monospace; margin-left: 0.35rem; }
+.breakdown-body { display: flex; flex-direction: column; }
+.breakdown-row { padding: 1.4rem 1.5rem; border-bottom: 1px solid var(--paper-dark); }
+.breakdown-row:last-child { border-bottom: none; }
+.br-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.5rem; }
+.br-text { font-size: 0.9rem; color: var(--ink-muted); line-height: 1.75; }
+.br-text strong { color: var(--ink); font-weight: 500; }
+.v-again-btn { margin-top: 1.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
+.v-disclaimer { margin-top: 1rem; font-size: 0.78rem; color: var(--ink-faint); line-height: 1.6; }
+.hv-block { margin-top: 1.75rem; }
+.hv-card { background: var(--ink); border-radius: 1rem; padding: 2rem; }
+.hv-badge { display: inline-block; background: rgba(184,84,26,0.2); color: var(--accent-light); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 0.85rem; border-radius: 2rem; margin-bottom: 1rem; border: 1px solid rgba(184,84,26,0.3); }
+.hv-title { font-family: var(--serif); font-size: 1.35rem; font-weight: 700; color: var(--paper); margin-bottom: 0.6rem; line-height: 1.2; }
+.hv-sub { font-size: 0.875rem; color: rgba(245,243,238,0.65); line-height: 1.75; margin-bottom: 1.5rem; }
+.hv-sub strong { color: var(--paper); font-weight: 500; }
+.hv-actions { display: flex; flex-direction: column; gap: 0.75rem; }
+.hv-btn-primary { background: var(--accent); color: var(--white); padding: 0.875rem 1.75rem; border-radius: 2rem; font-size: 0.9rem; font-weight: 500; cursor: pointer; border: none; font-family: var(--sans); transition: opacity 0.2s, transform 0.15s; text-align: center; }
+.hv-btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+.hv-btn-secondary { background: transparent; color: rgba(245,243,238,0.5); padding: 0.75rem 1.75rem; border-radius: 2rem; font-size: 0.875rem; font-weight: 400; cursor: pointer; border: 1px solid rgba(245,243,238,0.12); font-family: var(--sans); transition: color 0.2s, border-color 0.2s; text-align: center; }
+.hv-btn-secondary:hover { color: rgba(245,243,238,0.8); border-color: rgba(245,243,238,0.25); }
+.hv-email-form { margin-top: 0.25rem; }
+.hv-email-label { font-size: 0.875rem; color: rgba(245,243,238,0.65); margin-bottom: 1rem; line-height: 1.6; }
+.hv-email-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.hv-input { flex: 1; min-width: 200px; padding: 0.8rem 1rem; background: rgba(255,255,255,0.07); border: 1px solid rgba(245,243,238,0.15); border-radius: 0.65rem; font-family: var(--sans); font-size: 0.9rem; color: var(--paper); outline: none; transition: border-color 0.2s; }
+.hv-input:focus { border-color: var(--accent); }
+.hv-input::placeholder { color: rgba(245,243,238,0.3); }
+.hv-trust { font-size: 0.75rem; color: rgba(245,243,238,0.35); margin-top: 0.75rem; }
+.hv-confirmed { text-align: center; padding: 1rem 0; }
+.hv-confirmed-icon { width: 3rem; height: 3rem; border-radius: 50%; background: rgba(29,158,117,0.2); color: #4dbe94; font-size: 1.25rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; border: 1px solid rgba(29,158,117,0.3); }
+.hv-confirmed-title { font-family: var(--serif); font-size: 1.25rem; font-weight: 700; color: var(--paper); margin-bottom: 0.5rem; }
+.hv-confirmed-sub { font-size: 0.875rem; color: rgba(245,243,238,0.6); line-height: 1.7; }
+.hv-confirmed-sub strong { color: var(--paper); font-weight: 500; }
+</style>
 <div class="verify-wrap">
   <div class="eyebrow">Verification Tool</div>
   <h1>Does this source actually <em>support</em> the claim?</h1>
@@ -297,7 +322,7 @@ footer { background: var(--ink); padding: 2rem 2.5rem; border-top: 1px solid rgb
   <p class="verify-instruction">Don't worry if everything isn't perfectly formatted. Submit what you have and the tool will work with it. Source text is optional but improves accuracy significantly.</p>
   <div class="v-card" id="v-form">
     <div class="form-stack">
-      <div class="fg"><label>The Claim</label><textarea id="v-claim" placeholder='e.g. "Smith v. Jones establishes that employers are strictly liable for defective equipment injuries."' rows="4"></textarea></div>
+      <div class="fg"><label>The Claim</label><textarea id="v-claim" placeholder='e.g. "Smith v. Jones establishes that employers are strictly liable for defective equipment injuries in the workplace."' rows="4"></textarea></div>
       <div class="fg"><label>Source Text <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink-faint)">(paste the relevant excerpt from the case or statute)</span></label><textarea id="v-source" placeholder="Paste the relevant passage from the cited source here. The more text you include, the more accurate the analysis." rows="6"></textarea></div>
       <div class="v-submit-row">
         <button class="btn btn-dark" id="v-submit-btn" onclick="runVerification()">Verify Claim</button>
@@ -317,11 +342,35 @@ footer { background: var(--ink); padding: 2rem 2.5rem; border-top: 1px solid rgb
         <div class="breakdown-row"><p class="br-label">Reason</p><p class="br-text" id="br-reason"></p></div>
       </div>
     </div>
+    <div class="hv-block" id="hv-block">
+      <div class="hv-card">
+        <div class="hv-badge">Human Review Available</div>
+        <h3 class="hv-title">Want a human to verify this?</h3>
+        <p class="hv-sub">A legal reviewer will personally check this analysis and follow up within <strong>24 hours</strong> with a confirmed verdict and any additional findings the AI may have missed.</p>
+        <div class="hv-actions" id="hv-actions">
+          <button class="hv-btn-primary" onclick="requestHumanReview()">Request Human Review</button>
+          <button class="hv-btn-secondary" onclick="dismissHumanReview()">I'm good with the AI verdict</button>
+        </div>
+        <div class="hv-email-form" id="hv-email-form" style="display:none">
+          <p class="hv-email-label">Enter your email and a legal reviewer will follow up within 24 hours with a confirmed verdict.</p>
+          <div class="hv-email-row">
+            <input type="email" id="hv-email" placeholder="you@yourfirm.com" class="hv-input">
+            <button class="hv-btn-primary" onclick="submitHumanReview()">Submit</button>
+          </div>
+          <p class="hv-trust">🔒 Confidential. Not stored or used for training.</p>
+        </div>
+        <div class="hv-confirmed" id="hv-confirmed" style="display:none">
+          <div class="hv-confirmed-icon">✓</div>
+          <p class="hv-confirmed-title">Request received.</p>
+          <p class="hv-confirmed-sub">A human reviewer will follow up within <strong>24 hours</strong> with a verified result sent directly to your email.</p>
+        </div>
+      </div>
+    </div>
     <div class="v-again-btn">
       <button class="btn btn-dark" onclick="resetVerify()">Verify Another Claim</button>
       <button class="btn btn-ghost" onclick="goHome()">Back to Home</button>
     </div>
-    <p class="v-disclaimer">Proof uses AI analysis to check alignment between claims and sources. Results should be reviewed alongside your own professional judgment.</p>
+    <p class="v-disclaimer">Proof uses AI analysis to check alignment between claims and sources. For high-stakes work, request human verification above.</p>
   </div>
   <p style="text-align:center;margin-top:2rem;font-size:0.8rem;color:var(--ink-faint)"><span style="cursor:pointer;text-decoration:underline" onclick="goHome()">Back to Home</span></p>
 </div>
@@ -331,12 +380,58 @@ footer { background: var(--ink); padding: 2rem 2.5rem; border-top: 1px solid rgb
 function goHome(){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-home').classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
 function showVerify(){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-verify').classList.add('active');window.scrollTo({top:0,behavior:'smooth'});resetVerify();}
 function st(sel){setTimeout(()=>{const el=document.querySelector(sel);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},60);}
-function resetVerify(){document.getElementById('v-form').style.display='block';document.getElementById('v-loading').classList.remove('show');document.getElementById('v-result').classList.remove('show');document.getElementById('v-submit-btn').disabled=false;document.getElementById('v-submit-btn').textContent='Verify Claim';}
-let lastY=0;const nav=document.getElementById('topnav');
+function resetVerify(){
+  document.getElementById('v-form').style.display='block';
+  document.getElementById('v-loading').classList.remove('show');
+  document.getElementById('v-result').classList.remove('show');
+  document.getElementById('v-submit-btn').disabled=false;
+  document.getElementById('v-submit-btn').textContent='Verify Claim';
+  resetHumanReview();
+}
+let lastY=0;
+const nav=document.getElementById('topnav');
 window.addEventListener('scroll',()=>{const y=window.scrollY;nav.style.transform=y>lastY&&y>60?'translateY(-100%)':'translateY(0)';lastY=y;});
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});},{threshold:0.08});
 document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
-function sendContact(){const fname=document.getElementById('c-fname').value.trim();const lname=document.getElementById('c-lname').value.trim();const email=document.getElementById('c-email').value.trim();const msg=document.getElementById('c-msg').value.trim();if(!email||!msg){alert('Please enter your email and a message.');return;}const subject=encodeURIComponent('Proof Contact');const body=encodeURIComponent('From: '+fname+' '+lname+'\nEmail: '+email+'\n\nMessage:\n'+msg);window.location.href='mailto:shomannoah13@gmail.com?subject='+subject+'&body='+body;document.getElementById('contact-form').style.display='none';document.getElementById('contact-success').style.display='block';}
+function sendContact(){
+  const fname=document.getElementById('c-fname').value.trim();
+  const lname=document.getElementById('c-lname').value.trim();
+  const email=document.getElementById('c-email').value.trim();
+  const msg=document.getElementById('c-msg').value.trim();
+  if(!email||!msg){alert('Please enter your email and a message.');return;}
+  const subject=encodeURIComponent('Proof Contact');
+  const body=encodeURIComponent('From: '+fname+' '+lname+'\nEmail: '+email+'\n\nMessage:\n'+msg);
+  window.location.href='mailto:shomannoah13@gmail.com?subject='+subject+'&body='+body;
+  document.getElementById('contact-form').style.display='none';
+  document.getElementById('contact-success').style.display='block';
+}
+let currentVerification={claim:'',source:'',verdict:'',breakdown:''};
+function requestHumanReview(){
+  document.getElementById('hv-actions').style.display='none';
+  document.getElementById('hv-email-form').style.display='block';
+}
+function dismissHumanReview(){
+  document.getElementById('hv-block').style.display='none';
+}
+function submitHumanReview(){
+  const email=document.getElementById('hv-email').value.trim();
+  if(!email){alert('Please enter your email.');return;}
+  const subject=encodeURIComponent('Proof — Human Review Request');
+  const body=encodeURIComponent('HUMAN REVIEW REQUEST\n\nUser Email: '+email+'\n\nCLAIM:\n'+currentVerification.claim+'\n\nSOURCE:\n'+currentVerification.source+'\n\nAI VERDICT: '+currentVerification.verdict+'\n\nAI BREAKDOWN:\n'+currentVerification.breakdown);
+  window.location.href='mailto:shomannoah13@gmail.com?subject='+subject+'&body='+body;
+  document.getElementById('hv-email-form').style.display='none';
+  document.getElementById('hv-confirmed').style.display='block';
+}
+function resetHumanReview(){
+  const block=document.getElementById('hv-block');
+  if(block){
+    block.style.display='block';
+    document.getElementById('hv-actions').style.display='flex';
+    document.getElementById('hv-email-form').style.display='none';
+    document.getElementById('hv-confirmed').style.display='none';
+    document.getElementById('hv-email').value='';
+  }
+}
 const LOADING_MSGS=['Reading the claim...','Analyzing the source text...','Checking alignment between claim and source...','Building your breakdown...'];
 async function runVerification(){
   const claim=document.getElementById('v-claim').value.trim();
@@ -371,6 +466,7 @@ async function runVerification(){
     document.getElementById('br-source').innerHTML=r.what_source_says;
     document.getElementById('br-assessment').innerHTML=r.assessment;
     document.getElementById('br-reason').innerHTML=r.reason;
+    currentVerification={claim:claim,source:source,verdict:r.verdict,breakdown:'What is claimed: '+r.what_is_claimed+'\nWhat source says: '+r.what_source_says+'\nAssessment: '+r.assessment+'\nReason: '+r.reason};
     document.getElementById('v-result').classList.add('show');
     document.getElementById('v-result').scrollIntoView({behavior:'smooth',block:'start'});
   }catch(err){
