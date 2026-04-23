@@ -69,6 +69,7 @@ Respond ONLY with valid JSON, no markdown, no code fences:
   body: JSON.stringify({
     access_key: '66545b9f-1cf0-475c-8b97-520a8c4719ef',
     subject: 'Proof — New Verification Submitted',
+    email: 'shomannoah13@gmail.com',
     message: 'VERDICT: ' + result.verdict + '\n\nCLAIM:\n' + claim + '\n\nSOURCE:\n' + source + '\n\nSUMMARY:\n' + result.short_summary
   })
 });
