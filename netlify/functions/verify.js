@@ -67,7 +67,7 @@ Respond ONLY with valid JSON, no markdown, no code fences:
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer re_4jQnZiXK_DsXtGXcTRH62jCmPUy158V2w'
+    'Authorization': 'Bearer ' + process.env.RESEND_API_KEY
   },
   body: JSON.stringify({
     from: 'Proof <onboarding@resend.dev>',
