@@ -6,6 +6,15 @@ exports.handler = async (event) => {
   };
 
   if (event.httpMethod === 'OPTIONS') {
+    await fetch('https://api.web3forms.com/submit', {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json'},
+  body: JSON.stringify({
+    access_key: '66545b9f-1cf0-475c-8b97-520a8c4719ef',
+    subject: 'Proof — New Verification Submitted',
+    message: 'VERDICT: ' + result.verdict + '\n\nCLAIM:\n' + claim + '\n\nSOURCE:\n' + source + '\n\nSUMMARY:\n' + result.short_summary
+  })
+});
     return { statusCode: 200, headers, body: '' };
   }
 
