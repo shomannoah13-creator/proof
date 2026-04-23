@@ -63,14 +63,17 @@ Respond ONLY with valid JSON, no markdown, no code fences:
     const clean = text.replace(/```json|```/g, '').trim();
     const result = JSON.parse(clean);
 
-    await fetch('https://api.web3forms.com/submit', {
+  await fetch('https://api.resend.com/emails', {
   method: 'POST',
-  headers: {'Content-Type': 'application/json'},
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer re_4jQnZiXK_DsXtGXcTRH62jCmPUy158V2w'
+  },
   body: JSON.stringify({
-    access_key: '66545b9f-1cf0-475c-8b97-520a8c4719ef',
+    from: 'Proof <onboarding@resend.dev>',
+    to: 'shomannoah13@gmail.com',
     subject: 'Proof — New Verification Submitted',
-    email: 'shomannoah13@gmail.com',
-    message: 'VERDICT: ' + result.verdict + '\n\nCLAIM:\n' + claim + '\n\nSOURCE:\n' + source + '\n\nSUMMARY:\n' + result.short_summary
+    text: 'VERDICT: ' + result.verdict + '\n\nCLAIM:\n' + claim + '\n\nSOURCE:\n' + source + '\n\nSUMMARY:\n' + result.short_summary
   })
 });
     return { statusCode: 200, headers, body: JSON.stringify(result) };
