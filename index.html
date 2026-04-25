@@ -142,7 +142,7 @@ footer { background: var(--ink); padding: 2rem 2.5rem; border-top: 1px solid rgb
     <a class="nav-link" onclick="goHome(); st('#how')">How It Works</a>
     <a class="nav-link" onclick="goHome(); st('#example')">Example</a>
     <a class="nav-link" onclick="goHome(); st('#contact')">Contact</a>
-    <button class="nav-btn" onclick="showVerify()">Verify Your Work</button>
+    <button class="nav-btn" onclick="showVerify()">Run a Verification</button>
   </div>
 </nav>
 <div id="page-home" class="page active">
@@ -151,7 +151,7 @@ footer { background: var(--ink); padding: 2rem 2.5rem; border-top: 1px solid rgb
  <h1>The citation exists. <em>The argument is still wrong.</em></h1>
 <p class="hero-sub">AI-generated legal work can look credible before it's actually supportable. Proof verifies whether cited authority truly supports the claim — before it becomes client advice, a filing, or a legal position.</p>
   <div class="hero-btns">
-    <button class="btn btn-dark" onclick="showVerify()">Verify Your Work</button>
+    <button class="btn btn-dark" onclick="showVerify()">Run a Verification</button>
     <a class="btn btn-ghost" onclick="st('#how')">See how it works</a>
   </div>
 <p class="hero-trust">🔒 Most AI errors aren't fake citations. They're real citations used incorrectly.</p>
@@ -170,13 +170,13 @@ footer { background: var(--ink); padding: 2rem 2.5rem; border-top: 1px solid rgb
 <hr class="div">
 <div class="checks-sec">
   <div class="w">
-    <div class="eyebrow">What Proof Checks</div>
-    <h2 style="color:var(--paper)">Not just citations. The reasoning behind them.</h2>
-    <div class="check-list">
-      <div class="check-item fi"><div class="check-bullet"></div><p class="check-text"><strong>Whether cited sources actually support the claim</strong> — not just whether the citation exists, but whether it says what the argument claims it says.</p></div>
-      <div class="check-item fi"><div class="check-bullet"></div><p class="check-text"><strong>Whether arguments overstate or misapply authority</strong> — catching cases where a source is real but used beyond its actual holding.</p></div>
-      <div class="check-item fi"><div class="check-bullet"></div><p class="check-text"><strong>Whether reasoning stays within what the source says</strong> — identifying when an AI draws conclusions the source does not support.</p></div>
-    </div>
+    <div class="eyebrow">What Proof Verifies</div>
+<h2 style="color:var(--paper)">Not just citations. The reasoning behind them.</h2>
+<div class="check-list">
+<div class="check-item fi"><div class="check-bullet"></div><p class="check-text"><strong>Whether cited sources actually support the claim</strong> — not just whether the citation exists, but whether it says what the argument claims it says.</p></div>
+<div class="check-item fi"><div class="check-bullet"></div><p class="check-text"><strong>Whether arguments overstate or misapply authority</strong> — catching cases where a source is real but used beyond its actual holding.</p></div>
+<div class="check-item fi"><div class="check-bullet"></div><p class="check-text"><strong>Whether the reasoning stays within the limits of the source</strong> — identifying when an AI draws conclusions the source does not support.</p></div>
+</div>
   </div>
 </div>
 <div class="sec w fi">
@@ -191,12 +191,23 @@ footer { background: var(--ink); padding: 2rem 2.5rem; border-top: 1px solid rgb
     </div>
   </div>
 </div>
+  <hr class="div">
+<div class="sec w fi">
+  <div class="eyebrow">What Proof Is Not</div>
+  <h2>Built for one thing only.</h2>
+  <div class="check-list" style="margin-top:1.5rem;">
+    <div class="check-item fi"><div class="check-bullet"></div><p class="check-text"><strong>Not a legal research tool</strong> — Proof does not find cases or statutes for you.</p></div>
+    <div class="check-item fi"><div class="check-bullet"></div><p class="check-text"><strong>Not a drafting assistant</strong> — Proof does not write arguments or generate legal content.</p></div>
+    <div class="check-item fi"><div class="check-bullet"></div><p class="check-text"><strong>Not another AI generator</strong> — Proof sits at the end of the workflow, not the beginning.</p></div>
+    <div class="check-item fi" style="border-bottom:none;"><div class="check-bullet" style="background:var(--accent)"></div><p class="check-text"><strong>Proof is the verification layer before reliance.</strong> The control point between AI output and trusted legal reasoning.</p></div>
+  </div>
+</div>
 <hr class="div">
 <div class="sec w fi" id="how">
   <div class="eyebrow">How It Works</div>
   <div class="steps">
 <div class="step"><div class="step-n">Step 01</div><div class="step-t">Paste your claim and source</div><div class="step-b">Submit the AI-generated argument and the source it cites. No special formatting required.</div></div>
-<div class="step"><div class="step-n">Step 02</div><div class="step-t">Proof determines whether the source supports the claim</div><div class="step-b">Not just whether the citation exists — whether the argument built on top of it actually holds up.</div></div>
+<div class="step-t">Proof determines whether the source actually supports the claim</div>
 <div class="step"><div class="step-n">Step 03</div><div class="step-t">Receive a traceable breakdown</div><div class="step-b">Supported, Partially Supported, Not Supported, or Needs Review — with a plain-English explanation tied directly to the source.</div></div>
   </div>
 </div>
@@ -250,7 +261,7 @@ footer { background: var(--ink); padding: 2rem 2.5rem; border-top: 1px solid rgb
 <div class="cta-strip">
   <h2>Try it on your own work.</h2>
   <p>Paste a claim and a source. Get a verdict.</p>
-  <button class="btn btn-white" onclick="showVerify()">Verify Your Work</button>
+  <button class="btn btn-white" onclick="showVerify()">Run a Verification</button>
 </div>
 <footer><div class="foot"><span class="foot-logo" onclick="goHome()">Proof<span>.</span></span><span class="foot-copy">© 2026 N. Shoman · All submissions are confidential.</span></div></footer>
 </div>
