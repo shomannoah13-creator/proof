@@ -346,8 +346,8 @@ footer { background: var(--ink); padding: 2rem 2.5rem; border-top: 1px solid rgb
   <button onclick="loadExample()" type="button" style="font-size:0.75rem;color:var(--accent);background:none;border:none;cursor:pointer;font-family:var(--sans);text-decoration:underline;padding:0;">Try Example</button>
 </div>
 <div class="fg"><textarea id="v-claim" placeholder='e.g. "Smith v. Jones establishes that employers are strictly liable for defective equipment injuries in the workplace."' rows="4"></textarea></div>
-      <label>Source Text <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink-faint)">(paste the relevant excerpt — including source text significantly improves accuracy)</span></label>
-      <p style="font-size:0.8rem;color:var(--ink-faint);margin-bottom:0.75rem;line-height:1.6;">You'll receive a classification — Supported, Partially Supported, Not Supported, or Needs Review — with a traceable explanation tied directly to the source.</p>
+<div class="fg"><label>Source Text <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink-faint)">(paste the relevant excerpt — including source text significantly improves accuracy)</span></label><textarea id="v-source" placeholder="Paste the relevant passage from the cited source here." rows="6"></textarea></div>
+<p style="font-size:0.8rem;color:var(--ink-faint);margin-bottom:0.75rem;line-height:1.6;">You'll receive a classification
 <div class="v-submit-row">
         <button class="btn btn-dark" id="v-submit-btn" onclick="runVerification()">Run Verification</button>
 <span class="v-trust">🔒 Not stored or used for training.</span>
@@ -414,7 +414,7 @@ function resetVerify(){
   document.getElementById('v-loading').classList.remove('show');
   document.getElementById('v-result').classList.remove('show');
   document.getElementById('v-submit-btn').disabled=false;
-  document.getElementById('v-submit-btn').textContent='Verify Claim';
+  document.getElementById('v-submit-btn').textContent='Run Verification';
   resetHumanReview();
 }
 let lastY=0;
@@ -497,7 +497,7 @@ async function runVerification(){
   }catch(err){
     clearInterval(msgTimer);loading.classList.remove('show');
     document.getElementById('v-form').style.display='block';
-    btn.disabled=false;btn.textContent='Verify Claim';
+    btn.textContent='Run Verification';
     alert('Something went wrong. Please try again.');
   }
 }
