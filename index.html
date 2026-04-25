@@ -336,16 +336,21 @@ footer { background: var(--ink); padding: 2rem 2.5rem; border-top: 1px solid rgb
 </style>
 <div class="verify-wrap">
   <div class="eyebrow">Verification Tool</div>
-  <h1>Does this source actually <em>support</em> the claim?</h1>
-  <p class="verify-sub">Paste your AI-generated legal claim and the source text it cites. Proof checks whether the source actually supports the argument being made.</p>
-  <p class="verify-instruction">Don't worry if everything isn't perfectly formatted. Submit what you have and the tool will work with it. Source text is optional but improves accuracy significantly.</p>
+<h1>Does this source actually <em>support</em> the claim?</h1>
+<p class="verify-sub">Paste an AI-generated legal claim and the authority it cites. Proof analyzes whether the cited source actually supports the argument being made.</p>
+<p class="verify-instruction">Designed for use before reliance in legal workflows. Including source text significantly improves accuracy. Especially useful for catching cases where real authority is misapplied.</p>
   <div class="v-card" id="v-form">
     <div class="form-stack">
-      <div class="fg"><label>The Claim</label><textarea id="v-claim" placeholder='e.g. "Smith v. Jones establishes that employers are strictly liable for defective equipment injuries in the workplace."' rows="4"></textarea></div>
-      <div class="fg"><label>Source Text <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink-faint)">(paste the relevant excerpt from the case or statute)</span></label><textarea id="v-source" placeholder="Paste the relevant passage from the cited source here. The more text you include, the more accurate the analysis." rows="6"></textarea></div>
-      <div class="v-submit-row">
-        <button class="btn btn-dark" id="v-submit-btn" onclick="runVerification()">Verify Claim</button>
-        <span class="v-trust">🔒 Not stored or used for training.</span>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;">
+  <label style="font-size:0.73rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted);">The Claim</label>
+  <button onclick="loadExample()" type="button" style="font-size:0.75rem;color:var(--accent);background:none;border:none;cursor:pointer;font-family:var(--sans);text-decoration:underline;padding:0;">Try Example</button>
+</div>
+<div class="fg"><textarea id="v-claim" placeholder='e.g. "Smith v. Jones establishes that employers are strictly liable for defective equipment injuries in the workplace."' rows="4"></textarea></div>
+      <label>Source Text <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink-faint)">(paste the relevant excerpt — including source text significantly improves accuracy)</span></label>
+      <p style="font-size:0.8rem;color:var(--ink-faint);margin-bottom:0.75rem;line-height:1.6;">You'll receive a classification — Supported, Partially Supported, Not Supported, or Needs Review — with a traceable explanation tied directly to the source.</p>
+<div class="v-submit-row">
+        <button class="btn btn-dark" id="v-submit-btn" onclick="runVerification()">Run Verification</button>
+<span class="v-trust">🔒 Not stored or used for training.</span>
       </div>
     </div>
   </div>
@@ -397,6 +402,10 @@ footer { background: var(--ink); padding: 2rem 2.5rem; border-top: 1px solid rgb
 </div>
 <script>
 const W3F_KEY='66545b9f-1cf0-475c-8b97-520a8c4719ef';
+function loadExample(){
+  document.getElementById('v-claim').value='Air France v. Saks establishes that airlines may be held strictly liable when a passenger is injured due to an unusual or unexpected event during a flight.';
+  document.getElementById('v-source').value='The court held that an "accident" under Article 17 of the Warsaw Convention must be an unexpected or unusual event or happening that is external to the passenger. The court expressly declined to impose strict liability on airlines, holding instead that liability depends on whether the injury was caused by such an event. The word "accident" refers to an unexpected or unusual event, not the passenger\'s internal reaction to the normal operation of the aircraft.';
+}  
 function goHome(){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-home').classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
 function showVerify(){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-verify').classList.add('active');window.scrollTo({top:0,behavior:'smooth'});resetVerify();}
 function st(sel){setTimeout(()=>{const el=document.querySelector(sel);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},60);}
