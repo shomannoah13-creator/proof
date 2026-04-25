@@ -156,7 +156,19 @@ footer { background: var(--ink); padding: 2rem 2.5rem; border-top: 1px solid rgb
   </div>
 <p class="hero-trust">🔒 Most AI errors aren't fake citations. They're real citations used incorrectly.</p>
 <p style="margin-top:0.75rem;font-size:0.875rem;color:var(--ink-muted);max-width:46ch;line-height:1.7">Most tools check whether a citation exists. Proof checks whether the argument built on top of it actually holds up — combining AI analysis with human verification.</p>
-<p style="margin-top:0.5rem;font-size:0.8rem;color:var(--ink-faint)">Built from real issues observed in active legal practice.</p>
+<p style="margin-top:0.5rem;font-size:0.8rem;color:var(--ink-faint)">Observed during legal internships and active litigation workflows.</p>
+</div>
+<hr class="div">
+<div class="sec w fi" id="example">
+  <div class="eyebrow">Example</div>
+  <h2>See the failure Proof catches.</h2>
+  <div class="example-card">
+    <div class="ex-bar"><div class="dot" style="background:#f08080"></div><div class="dot" style="background:#f4c97b"></div><div class="dot" style="background:#6dcc8a"></div><span class="ex-mono">proof — verification result</span></div>
+    <div class="ex-grid">
+      <div class="ex-cell"><p class="ex-lbl">AI Output</p><p class="ex-claim-text">"This case supports strict liability for employers when defective equipment causes workplace injury."</p></div>
+      <div class="ex-cell"><p class="ex-lbl">Proof Result</p><div class="ex-badge">✕ Not Supported</div><p class="ex-verdict">Source discusses <strong>negligence</strong>, not strict liability. <strong>Claim does not align with cited authority.</strong></p></div>
+    </div>
+  </div>
 </div>
 <hr class="div">
 <div class="sec w fi">
@@ -211,19 +223,6 @@ footer { background: var(--ink); padding: 2rem 2.5rem; border-top: 1px solid rgb
   <div class="step"><div class="step-n">Step 03</div><div class="step-t">Receive a traceable breakdown</div><div class="step-b">Supported, Partially Supported, Not Supported, or Needs Review — with a plain-English explanation tied directly to the source.</div></div>
 </div>
 </div>
-<hr class="div">
-<div class="sec w fi" id="example">
-  <div class="eyebrow">Example</div>
-  <h2>See the failure Proof catches.</h2>
-  <div class="example-card">
-    <div class="ex-bar"><div class="dot" style="background:#f08080"></div><div class="dot" style="background:#f4c97b"></div><div class="dot" style="background:#6dcc8a"></div><span class="ex-mono">proof — verification result</span></div>
-    <div class="ex-grid">
-      <div class="ex-cell"><p class="ex-lbl">AI Output</p><p class="ex-claim-text">"This case supports strict liability for employers when defective equipment causes workplace injury."</p></div>
-      <div class="ex-cell"><p class="ex-lbl">Proof Result</p><div class="ex-badge">✕ Not Supported</div><p class="ex-verdict">Source discusses <strong>negligence</strong>, not strict liability. <strong>Claim does not align with cited authority.</strong></p></div>
-    </div>
-  </div>
-</div>
-<hr class="div">
 <div class="sec w fi">
   <div class="eyebrow">When to Use Proof</div>
 <h2>Use Proof before reliance.</h2>
@@ -347,7 +346,7 @@ footer { background: var(--ink); padding: 2rem 2.5rem; border-top: 1px solid rgb
 </div>
 <div class="fg"><textarea id="v-claim" placeholder='e.g. "Smith v. Jones establishes that employers are strictly liable for defective equipment injuries in the workplace."' rows="4"></textarea></div>
 <div class="fg"><label>Source Text <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink-faint)">(paste the relevant excerpt — including source text significantly improves accuracy)</span></label><textarea id="v-source" placeholder="Paste the relevant passage from the cited source here." rows="6"></textarea></div>
-<p style="font-size:0.8rem;color:var(--ink-faint);margin-bottom:0.75rem;line-height:1.6;">You'll receive a classification — Supported, Partially Supported, Not Supported, or Needs Review — with a traceable explanation tied directly to the source.</p>
+<p style="font-size:0.8rem;color:var(--ink-faint);margin-bottom:0.75rem;line-height:1.6;">You'll receive a classification (Supported / Partially Supported / Not Supported / Needs Review) with a traceable explanation tied directly to the source.</p>
 <div class="v-submit-row">
         <button class="btn btn-dark" id="v-submit-btn" onclick="runVerification()">Run Verification</button>
 <span class="v-trust">🔒 Not stored or used for training.</span>
