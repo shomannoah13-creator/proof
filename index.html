@@ -403,7 +403,7 @@ footer { background: var(--ink); padding: 2rem 2.5rem; border-top: 1px solid rgb
 const W3F_KEY='66545b9f-1cf0-475c-8b97-520a8c4719ef';
 function loadExample(){
   document.getElementById('v-claim').value='Air France v. Saks establishes that airlines may be held strictly liable when a passenger is injured due to an unusual or unexpected event during a flight.';
-  document.getElementById('v-source').value='The court held that an "accident" under Article 17 of the Warsaw Convention must be an unexpected or unusual event or happening that is external to the passenger. The court expressly declined to impose strict liability on airlines, holding instead that liability depends on whether the injury was caused by such an event. The word "accident" refers to an unexpected or unusual event, not the passenger\'s internal reaction to the normal operation of the aircraft.';
+  
 }  
 function goHome(){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-home').classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
 function showVerify(){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-verify').classList.add('active');window.scrollTo({top:0,behavior:'smooth'});resetVerify();}
@@ -459,7 +459,7 @@ function resetHumanReview(){
 const LOADING_MSGS=['Reading the claim...','Analyzing the source text...','Checking alignment between claim and source...','Building your breakdown...'];
 async function runVerification(){
   const claim=document.getElementById('v-claim').value.trim();
-  const source=document.getElementById('v-source').value.trim();
+  const source='';
   if(!claim){alert('Please enter a claim to verify.');return;}
   const btn=document.getElementById('v-submit-btn');
   btn.disabled=true;btn.textContent='Analyzing...';
