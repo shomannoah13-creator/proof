@@ -35,6 +35,13 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1rem 2.
 .nav-link:hover { color: var(--ink); }
 .nav-btn { background: var(--ink); color: var(--paper); padding: 0.5rem 1.3rem; border-radius: 2rem; font-size: 0.84rem; font-weight: 500; cursor: pointer; border: none; font-family: var(--sans); transition: background 0.2s; white-space: nowrap; }
 .nav-btn:hover { background: var(--accent); }
+  @keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(184,84,26,0.35); }
+  70% { box-shadow: 0 0 0 10px rgba(184,84,26,0); }
+  100% { box-shadow: 0 0 0 0 rgba(184,84,26,0); }
+}
+.btn-dark { animation: pulse-ring 2.5s ease-out infinite; }
+.btn-dark:hover { animation: none; }
 .w { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
 hr.div { border: none; border-top: 1px solid var(--paper-dark); }
 .eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.9rem; }
@@ -148,7 +155,7 @@ footer { background: var(--ink); padding: 2rem 2.5rem; border-top: 1px solid rgb
 <div id="page-home" class="page active">
 <div class="hero">
   <div class="eyebrow">For legal professionals</div>
- <h1>The citation exists. <em>The argument is still wrong.</em></h1>
+ <h1>The citation exists. <em class="typed-text"></em></h1>
 <p class="hero-sub">AI-generated legal work can look credible before it's actually supportable. Proof verifies whether cited authority truly supports the claim — before it becomes client advice, a filing, or a legal position.</p>
   <div class="hero-btns">
     <button class="btn btn-dark" onclick="showVerify()">Run a Verification</button>
@@ -165,9 +172,9 @@ footer { background: var(--ink); padding: 2rem 2.5rem; border-top: 1px solid rgb
   <div class="example-card">
     <div class="ex-bar"><div class="dot" style="background:#f08080"></div><div class="dot" style="background:#f4c97b"></div><div class="dot" style="background:#6dcc8a"></div><span class="ex-mono">proof — verification result</span></div>
     <div class="ex-grid">
-      <div class="ex-cell"><p class="ex-lbl">AI Output</p><p class="ex-claim-text">"This case supports strict liability for employers when defective equipment causes workplace injury."</p></div>
-      <div class="ex-cell"><p class="ex-lbl">Proof Result</p><div class="ex-badge">✕ Not Supported</div><p class="ex-verdict">Source discusses <strong>negligence</strong>, not strict liability. <strong>Claim does not align with cited authority.</strong></p></div>
-    </div>
+  <div class="ex-cell"><p class="ex-lbl">AI Output</p><p class="ex-claim-text">"This case supports strict liability for employers when defective equipment causes workplace injury."</p></div>
+  <div class="ex-cell" id="ex-result-cell" style="opacity:0;transition:opacity 0.6s ease;"><p class="ex-lbl">Proof Result</p><div class="ex-badge">✕ Not Supported</div><p class="ex-verdict">Source discusses <strong>negligence</strong>, not strict liability. <strong>Claim does not align with cited authority.</strong></p></div>
+</div>
   </div>
 </div>
 <hr class="div">
@@ -218,7 +225,7 @@ footer { background: var(--ink); padding: 2rem 2.5rem; border-top: 1px solid rgb
 <div class="sec w fi" id="how">
   <div class="eyebrow">How It Works</div>
   <div class="steps">
-  <div class="step"><div class="step-n">Step 01</div><div class="step-t">Paste your claim and source</div><div class="step-b">Submit the AI-generated argument and the source it cites. No special formatting required.</div></div>
+  <div class="step"><div class="step-n">Step 01</div><div class="step-t">Paste your claim</div><div class="step-b">Submit the AI-generated argument and the source it cites. No special formatting required.</div></div>
   <div class="step"><div class="step-n">Step 02</div><div class="step-t">Proof determines whether the source actually supports the claim</div><div class="step-b">Not just whether the citation exists — whether the argument built on top of it actually holds up.</div></div>
   <div class="step"><div class="step-n">Step 03</div><div class="step-t">Receive a traceable breakdown</div><div class="step-b">Supported, Partially Supported, Not Supported, or Needs Review — with a plain-English explanation tied directly to the source.</div></div>
 </div>
@@ -259,7 +266,7 @@ footer { background: var(--ink); padding: 2rem 2.5rem; border-top: 1px solid rgb
 </div>
 <div class="cta-strip">
   <h2>Try it on your own work.</h2>
-  <p>Paste a claim and a source. Get a verdict.</p>
+  <p>Paste a claim. Get a verdict.</p>
   <button class="btn btn-white" onclick="showVerify()">Run a Verification</button>
 </div>
 <footer><div class="foot"><span class="foot-logo" onclick="goHome()">Proof<span>.</span></span><span class="foot-copy">© 2026 N. Shoman · All submissions are confidential.</span></div></footer>
@@ -456,7 +463,7 @@ function resetHumanReview(){
     document.getElementById('hv-email').value='';
   }
 }
-const LOADING_MSGS=['Reading the claim...','Analyzing the source text...','Checking alignment between claim and source...','Building your breakdown...'];
+const LOADING_MSGS=['Reading the claim...','Searching CourtListener for the source...','Checking whether the reasoning holds up...','Building your breakdown...'];
 async function runVerification(){
   const claim=document.getElementById('v-claim').value.trim();
   const source='';
@@ -499,6 +506,32 @@ async function runVerification(){
     btn.textContent='Run Verification';
     alert('Something went wrong. Please try again.');
   }
+}
+  // Typing animation
+const typedEl = document.querySelector('.typed-text');
+const phrase = 'The argument is still wrong.';
+let i = 0;
+function typeIt() {
+  if (!typedEl) return;
+  if (i <= phrase.length) {
+    typedEl.textContent = phrase.slice(0, i);
+    i++;
+    setTimeout(typeIt, 48);
+  }
+}
+setTimeout(typeIt, 800);
+  // Example card reveal
+const exCell = document.getElementById('ex-result-cell');
+if (exCell) {
+  const exObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        setTimeout(() => { exCell.style.opacity = '1'; }, 400);
+        exObs.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+  exObs.observe(exCell);
 }
 </script>
 </body>
