@@ -104,7 +104,7 @@ const searchUrl = `https://www.courtlistener.com/api/rest/v4/search/?q=${encodeU
             const plainText = rawText.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
 
             // Truncate to ~3000 chars to stay within token limits
-            courtListenerSource = plainText.substring(0, 3000);
+            courtListenerSource = plainText.substring(0, 8000);
           }
         }
       }
