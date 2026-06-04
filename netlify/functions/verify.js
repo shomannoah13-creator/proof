@@ -43,7 +43,7 @@ exports.handler = async (event) => {
         max_tokens: 200,
         messages: [{
           role: 'user',
-          content: `Extract the case name from this legal claim. Return ONLY a JSON object with one field "case_name" containing the case name as it would appear in a legal citation (e.g. "Air France v. Saks"), or null if no case is mentioned.
+          content: `Extract the case citation from this legal claim. Return ONLY a JSON object with one field "case_name" containing the full citation including reporter and year if mentioned (e.g. "Air France v. Saks 470 U.S. 392 1985"), or just the case name if no citation is given. Return null if no case is mentioned.
 
 Claim: "${claim}"
 
