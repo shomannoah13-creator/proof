@@ -59,7 +59,9 @@ Respond ONLY with valid JSON, no markdown, no explanation.`
 
     // ── STEP 2: Search CourtListener for the case ───────────────────────
     if (extracted.case_name && extracted.case_name !== null) {
-      const searchUrl = `https://www.courtlistener.com/api/rest/v4/search/?q=${encodeURIComponent(extracted.case_name)}&type=o&order_by=score+desc`;
+      const isSupremeCourt = extracted.case_name && (extracted.case_name.includes('U.S.') || extracted.case_name.includes('S.Ct.') || extracted.case_name.includes('S. Ct.'));
+const courtFilter = isSupremeCourt ? '&court=scotus' : '';
+const searchUrl = `https://www.courtlistener.com/api/rest/v4/search/?q=${encodeURIComponent(extracted.case_name)}&type=o&order_by=score+desc${courtFilter}`;
 
       const searchResponse = await fetch(searchUrl, {
         headers: {
